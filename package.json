@@ -1,0 +1,28 @@
+{
+  "name": "web-mailer",
+  "version": "1.0.0",
+  "description": "Email documents to customers.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoshDrentlaw/web-mailer.git"
+  },
+  "author": "Josh Drentlaw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoshDrentlaw/web-mailer/issues"
+  },
+  "homepage": "https://github.com/JoshDrentlaw/web-mailer#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "nodemailer": "^5.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
