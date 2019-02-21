@@ -10,7 +10,16 @@
 <body>
     <main>
         <h1>Web Mailer</h1>
-        <form action="fileupload" method="POST" enctype="multipart/form-data" target="">
+        <form action="fileupload" method="POST" enctype="multipart/form-data">
+            <select name="customer">
+                <option value="haskel" selected>Haskel</option>
+            </select>
+            <input type="text" name="filename" placeholder="Enter the file name.">
+            <input type="text" name="subject" placeholder="Enter email subject.">
+            <div>
+                <label for="is-same">Same as file name?</label>
+                <input type="checkbox" name="isSame">
+            </div>
             <input type="file" name="fileupload" id="file-upload">
             <button type="submit">Submit</button>
         </form>
