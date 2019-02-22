@@ -18,9 +18,12 @@
   },
   "homepage": "https://github.com/JoshDrentlaw/web-mailer#readme",
   "dependencies": {
+    "@okta/oidc-middleware": "^2.0.0",
+    "@okta/okta-sdk-nodejs": "^1.2.0",
     "body-parser": "^1.18.3",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "express-session": "^1.15.6",
     "formidable": "^1.2.1",
     "nodejs-nodemailer-outlook": "^1.0.8",
     "nodemailer": "^5.1.1"

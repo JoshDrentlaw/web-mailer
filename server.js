@@ -13,6 +13,24 @@ let user, pass;
 
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
+
+server.use(require('express-session')({
+    secret: process.env.APP_SECRET,
+    resave: true,
+    saveUninitialized: false
+}));
+
+const { ExpressOIDC } = require('@okta/oidc-middleware');
+const oidc = new ExpressOIDC({
+    issuer: `${process.env.OKTA_ORG_URL}/oauth2/default`,
+    client_id: process.env.OKTA_CLIENT_ID,
+    client_secret: process.env.OKTA_CLIENT_SECRET,
+    redirect_uri: `${process.env.HOST_URL}/authorization-code/callback`,
+    scope: 'openid profile'
+});
+
+server.use(oidc.router);
+
 server.use(express.static(path.join(__dirname, 'client')));
 
 server.post('/login', (req, res) => {
