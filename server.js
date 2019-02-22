@@ -9,12 +9,20 @@ const express = require('express');
 
 const server = express();
 const port = process.env.PORT || 3000;
+let user, pass;
 
 server.use(bodyParser.json());
 server.use(express.static(path.join(__dirname, 'client')));
 
-server.post('/fileupload', (req, res) => {
+server.post('/login', (req, res) => {
     console.log(req.body);
+    user = req.body.user;
+    pass = req.body.pass;
+    res.redirect('mailer.html');
+})
+
+server.post('/fileupload', (req, res) => {
+    console.log(user, pass);
     let form = new formidable.IncomingForm();
     let filepath = new Promise((res, rej) => {
         form.parse(req, (err, fields, files) => {
@@ -36,11 +44,11 @@ server.post('/fileupload', (req, res) => {
         }
         nodeoutlook.sendEmail({
             auth: {
-                user: process.env.USER,
-                pass: process.env.PASS
+                user: user,
+                pass: pass
             },
-            from: process.env.USER,
-            to: process.env.USER,
+            from: user,
+            to: user,
             subject: subject,
             text: 'Documents attached.',
             attachments: [
@@ -51,7 +59,7 @@ server.post('/fileupload', (req, res) => {
             ]
         });
     });
-    res.redirect('index.html');
+    res.redirect('mailer.html');
 });
 
 server.listen(port, () => {
