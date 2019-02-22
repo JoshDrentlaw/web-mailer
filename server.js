@@ -11,6 +11,7 @@ const server = express();
 const port = process.env.PORT || 3000;
 let user, pass;
 
+server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
 server.use(express.static(path.join(__dirname, 'client')));
 
@@ -19,7 +20,7 @@ server.post('/login', (req, res) => {
     user = req.body.user;
     pass = req.body.pass;
     res.redirect('mailer.html');
-})
+});
 
 server.post('/fileupload', (req, res) => {
     console.log(user, pass);
